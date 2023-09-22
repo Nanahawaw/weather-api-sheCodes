@@ -50,7 +50,18 @@ function showTemperature(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
 }
-let city = "Nova scotia";
-let apiKey = "e6fcbcft268220745f113aof372ae233";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
-axios.get(apiUrl).then(showTemperature);
+function search(city) {
+  let apiKey = "e6fcbcft268220745f113aof372ae233";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+  axios.get(apiUrl).then(showTemperature);
+}
+function searchCity(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#search-btn");
+  search(cityInputElement.value);
+}
+
+search("Nova scotia");
+
+let form = document.querySelector("#city-search-form");
+form.addEventListener("submit", searchCity);
