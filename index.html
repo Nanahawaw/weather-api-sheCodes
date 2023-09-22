@@ -14,67 +14,64 @@
   </head>
   <title>WeatherApp></title>
   <body>
-    <div class="container">
-      <form id="city-search-form">
-        <div class="row">
-          <div class="col-9">
-            <input
-              id="search-btn"
-              name="search"
-              class="form-control"
-              type="search"
-              placeholder="Enter a city...."
-            />
+    <div class="wrapper">
+      <div class="container">
+        <form id="city-search-form">
+          <div class="row">
+            <div class="col-9">
+              <input
+                id="search-btn"
+                name="search"
+                class="form-control w-100"
+                type="search"
+                placeholder="Enter a city...."
+              />
+            </div>
+            <div class="col-3">
+              <input
+                class="form-control-btn btn btn-primary w-100"
+                type="submit"
+                value="Search"
+              />
+            </div>
           </div>
-          <div class="col-3">
-            <input
-              class="form-control-btn btn btn-primary"
-              type="submit"
-              value="Search"
-            />
-            <input
-              id="current-location-btn"
-              class="form-control-btn btn btn-primary"
-              type="submit"
-              value="Current Location"
-            />
+        </form>
+        <h1 id="city"></h1>
+        <p id="date"></p>
+        <p id="description"></p>
+
+        <div class="weather">
+          <div class="row">
+            <div class="col-6">
+              <img
+                class="cloud"
+                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+              />
+              <span class="temp" id="temperature"></span>
+              <span class="deg" id="celsius">&deg;C |</span>
+              <span class="deg" id="farenheit"><a href="#"> &deg;F </a></span>
+            </div>
+            <div class="col-6">
+              <ul>
+                <li>Humidity: <span id="humidity"></span> %</li>
+                <li>Wind: <span id="wind"></span> km/h</li>
+              </ul>
+            </div>
           </div>
         </div>
-      </form>
-      <h1>Lagos</h1>
-      <p>
-        <span class="monday">Monday</span> <span class="time">16:00</span>
-        <br /><span class="desc">Mostly cloudy</span>
-      </p>
 
-      <div class="weather">
-        <div class="row">
-          <div class="col-6">
-            <img
-              class="cloud"
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-            />
-            <span class="temp"> 28 </span>
-            <span class="deg" id="celsius">&deg;C</span>
-            <!----<span class="deg" id="farenheit"><a href="#"> &deg;F </a></span>-->
-          </div>
-          <div class="col-6">
-            <ul>
-              <li id="precip">Precipitation: 13%</li>
-              <li id="humid">Humidity: 81%</li>
-              <li id="winds">Wind: 16km/h</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- <span class="elements">
+        <!-- <span class="elements">
         <a href="#">Temperature</a> | <a href="#"> Precipitation</a> |
         <a href="#"> Wind</a>
       </span>-->
+      </div>
+      <small>
+        Open Source Project
+        <a href="https://github.com/Nanahawaw/weather-api-sheCodes"
+          >Coded by Nans</a
+        >
+      </small>
     </div>
-
-    https://github.com/Nanahawaw/weather-api-sheCodes
     <script src="index.js"></script>
   </body>
 </html>
