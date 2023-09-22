@@ -1,3 +1,4 @@
+//This function formats the dateTime string from the API call//
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
@@ -21,6 +22,7 @@ function formatDate(timestamp) {
   return `${day} ${hours}: ${minutes}`;
 }
 
+//This function displays the response of elements from the API call
 function showTemperature(response) {
   console.log(response);
   let temperatureElement = document.querySelector("#temperature");
@@ -49,19 +51,50 @@ function showTemperature(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+
+  celsiusTemperature = response.data.temperature.current;
 }
+//this function searches for a city whenever you submit the form and then display the elements in the showTemperature function//
 function search(city) {
   let apiKey = "e6fcbcft268220745f113aof372ae233";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
   axios.get(apiUrl).then(showTemperature);
 }
+//this function gets the input value from the form and pass it to function search to make an API call
 function searchCity(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#search-btn");
   search(cityInputElement.value);
 }
 
-search("Nova scotia");
+let celsiusTemperature = null;
+
+//this function displays the farenheit value of the temperature from the API call
+function showFarenheitTemperature(event) {
+  event.preventDefault();
+  //convert to farenheit value//
+  let farenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(farenheitTemperature);
+  celsius.classList.remove("active");
+  farenheit.classList.add("active");
+}
+
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  celsius.classList.add("active");
+  farenheit.classList.remove("active");
+}
 
 let form = document.querySelector("#city-search-form");
 form.addEventListener("submit", searchCity);
+
+let farenheit = document.querySelector("#farenheit");
+farenheit.addEventListener("click", showFarenheitTemperature);
+
+let celsius = document.querySelector("#celsius");
+celsius.addEventListener("click", showCelsiusTemperature);
+//on load, make an API call and search for the city Abeokuta.
+search("Abeokuta");
