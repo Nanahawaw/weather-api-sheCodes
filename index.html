@@ -14,59 +14,55 @@
   </head>
   <title>WeatherApp></title>
   <body>
-    <div class="wrapper">
-      <div class="container">
-        <form id="city-search-form">
-          <div class="row">
-            <div class="col-9">
-              <input
-                id="search-btn"
-                name="search"
-                class="form-control w-100"
-                type="search"
-                placeholder="Enter a city...."
-                autocomplete="off"
-              />
+    <div class="container">
+      <div class="wrapper">
+        <div class="weather-app">
+          <form id="city-search-form">
+            <div class="row">
+              <div class="col-9">
+                <input
+                  id="search-btn"
+                  name="search"
+                  class="form-control w-100"
+                  type="search"
+                  placeholder="Enter a city...."
+                  autocomplete="off"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  class="form-control-btn btn btn-primary w-100"
+                  type="submit"
+                  value="Search"
+                />
+              </div>
             </div>
-            <div class="col-3">
-              <input
-                class="form-control-btn btn btn-primary w-100"
-                type="submit"
-                value="Search"
-              />
-            </div>
-          </div>
-        </form>
-        <h1><span id="city"></span> , <span id="country"></span></h1>
-        <p id="date"></p>
-        <p id="description"></p>
+          </form>
+          <h1><span id="city"></span> , <span id="country"></span></h1>
+          <p id="date"></p>
+          <p id="description"></p>
 
-        <div class="weather">
-          <div class="row">
-            <div class="col-6">
-              <img
-                class="cloud"
-                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                id="weather-icon"
-              />
-              <span class="temp" id="temperature"></span>
-              <span class="deg" id="celsius">&deg;C |</span>
-              <span class="deg" id="farenheit"><a href="#"> &deg;F </a></span>
+          <div class="weather">
+            <div class="row">
+              <div class="col-6">
+                <img
+                  class="cloud"
+                  src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+                  id="weather-icon"
+                />
+                <span class="temp" id="temperature"></span>
+                <span class="deg" id="celsius">&deg;C |</span>
+                <span class="deg" id="farenheit"><a href="#"> &deg;F </a></span>
+              </div>
+              <div class="col-6">
+                <ul>
+                  <li>Humidity: <span id="humidity"></span> %</li>
+                  <li>Wind: <span id="wind"></span> km/h</li>
+                </ul>
+              </div>
             </div>
-            <div class="col-6">
-              <ul>
-                <li>Humidity: <span id="humidity"></span> %</li>
-                <li>Wind: <span id="wind"></span> km/h</li>
-              </ul>
-            </div>
-          </div>
         </div>
-
-        <!-- <span class="elements">
-        <a href="#">Temperature</a> | <a href="#"> Precipitation</a> |
-        <a href="#"> Wind</a>
-      </span>-->
-      </div>
+        </div>
       <small>
         Open Source Project
         <a href="https://github.com/Nanahawaw/weather-api-sheCodes"
