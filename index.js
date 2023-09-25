@@ -22,25 +22,41 @@ function formatDate(timestamp) {
   return `${day} ${hours}: ${minutes}`;
 }
 //weather forecast
-function showWeatherForecast() {
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+function showWeatherForecast(response) {
+  let forecast = response.data.daily;
+  console.log(forecast);
   let forecastElement = document.getElementById("forecast");
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
   let forecastHTML = "";
-  days.forEach(function (day) {
+  forecast.forEach(function (forecastDays) {
     forecastHTML += `
     <div class="forecast-days">
       <div classs="days">
-        <div class="title">${day}</div>
+        <div class="title">${formatDay(forecastDays.time)}</div>
         <div class="icon">
           <img
-            src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+            src=
+"http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+      forecastDays.condition.icon
+    }.png"
             alt="icon"
             width="36"
           />
         </div>
         <div class="forecast-temp">
-          <span class="high">10&deg; </span>
-          <span class="low"> 5&deg;</span>
+          <span class="high">${Math.round(
+            forecastDays.temperature.maximum
+          )}&deg; </span>
+          <span class="low"> ${Math.round(
+            forecastDays.temperature.minimum
+          )}&deg;</span>
         </div>
       </div>
     </div>
@@ -49,9 +65,11 @@ function showWeatherForecast() {
   });
 }
 
-let apiKey = "e6fcbcft268220745f113aof372ae233";
-let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=&lon=&key=${apiKey}&units=metric`;
-
+function getForecast(coordinates) {
+  let apiKey = "e6fcbcft268220745f113aof372ae233";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeatherForecast);
+}
 //This function displays the response of elements from the API call
 function showTemperature(response) {
   console.log(response);
@@ -83,6 +101,7 @@ function showTemperature(response) {
   );
 
   celsiusTemperature = response.data.temperature.current;
+  getForecast(response.data.coordinates);
 }
 //this function searches for a city whenever you submit the form and then display the elements in the showTemperature function//
 function search(city) {
@@ -127,7 +146,5 @@ farenheit.addEventListener("click", showFarenheitTemperature);
 let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", showCelsiusTemperature);
 
-//show weather forecast
-showWeatherForecast();
 //on load, make an API call and search for the city Abeokuta.
 search("Abeokuta");
