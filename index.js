@@ -22,13 +22,23 @@ function formatDate(timestamp) {
   return `${day} ${hours}: ${minutes}`;
 }
 //weather forecast
+function isToday(timestamp) {
+  const inputDate = new Date(timestamp * 1000);
+  const today = new Date();
 
+  return (
+    inputDate.getDate() === today.getDate() &&
+    inputDate.getMonth() === today.getMonth() &&
+    inputDate.getFullYear() === today.getFullYear()
+  );
+}
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return days[day];
 }
+
 function showWeatherForecast(response) {
   let forecast = response.data.daily;
   console.log(forecast);
@@ -36,10 +46,16 @@ function showWeatherForecast(response) {
 
   let forecastHTML = "";
   forecast.forEach(function (forecastDays, index) {
+    let dayName;
+    if (index === 0 && isToday(forecastDays.time)) {
+      dayName = "Today";
+    } else {
+      dayName = formatDay(forecastDays.time);
+    }
     forecastHTML += `
     <div class="forecast ${index === 0 ? "highlight" : ""}">
       <div classs="days">
-        <div class="title">${formatDay(forecastDays.time)}</div>
+        <div class="title">${dayName}</div>
         <div class="icon">
           <img
             src=
