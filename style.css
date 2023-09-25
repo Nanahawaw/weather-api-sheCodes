@@ -105,3 +105,19 @@ ul {
   margin-top: 6px;
   vertical-align: top;
 }
+.forecast {
+  margin-top: 20px;
+  text-align: center;
+}
+.forecast .forecast-days {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: center;
+}
+.forecast-temp {
+  font-size: 13px;
+}
+.forecast-temp .low {
+  color: rgb(112, 117, 122);
+}
