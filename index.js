@@ -35,9 +35,9 @@ function showWeatherForecast(response) {
   let forecastElement = document.getElementById("forecast");
 
   let forecastHTML = "";
-  forecast.forEach(function (forecastDays) {
+  forecast.forEach(function (forecastDays, index) {
     forecastHTML += `
-    <div class="forecast-days">
+    <div class="forecast ${index === 0 ? "highlight" : ""}">
       <div classs="days">
         <div class="title">${formatDay(forecastDays.time)}</div>
         <div class="icon">

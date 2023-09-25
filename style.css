@@ -112,7 +112,6 @@ ul {
   justify-content: space-between;
   gap: 0;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .forecast .forecast-days {
@@ -126,4 +125,10 @@ ul {
 }
 .forecast-temp .low {
   color: rgb(112, 117, 122);
+}
+.highlight {
+  background-color: #fafafa; /* Light gray background */
+  font-weight: bold;
+  padding: 16px; /* Adjust this value according to your design */
+  box-sizing: border-box;
 }
