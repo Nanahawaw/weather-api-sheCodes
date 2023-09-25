@@ -21,6 +21,36 @@ function formatDate(timestamp) {
   }
   return `${day} ${hours}: ${minutes}`;
 }
+//weather forecast
+function showWeatherForecast() {
+  let forecastElement = document.getElementById("forecast");
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  let forecastHTML = "";
+  days.forEach(function (day) {
+    forecastHTML += `
+    <div class="forecast-days">
+      <div classs="days">
+        <div class="title">${day}</div>
+        <div class="icon">
+          <img
+            src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+            alt="icon"
+            width="36"
+          />
+        </div>
+        <div class="forecast-temp">
+          <span class="high">10&deg; </span>
+          <span class="low"> 5&deg;</span>
+        </div>
+      </div>
+    </div>
+  `;
+    forecastElement.innerHTML = forecastHTML;
+  });
+}
+
+let apiKey = "e6fcbcft268220745f113aof372ae233";
+let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=&lon=&key=${apiKey}&units=metric`;
 
 //This function displays the response of elements from the API call
 function showTemperature(response) {
@@ -96,5 +126,8 @@ farenheit.addEventListener("click", showFarenheitTemperature);
 
 let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", showCelsiusTemperature);
+
+//show weather forecast
+showWeatherForecast();
 //on load, make an API call and search for the city Abeokuta.
 search("Abeokuta");
